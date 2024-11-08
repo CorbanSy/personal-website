@@ -30,4 +30,5 @@
 .button-style:hover span {
     border-bottom: 3px solid white; /* Bottom border becomes white and thicker on hover */
     font-weight: bold; /* Bold text on hover */
+    font-size: 25px;
 }
