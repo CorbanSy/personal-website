@@ -1,0 +1,42 @@
+
+.about-center{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-image: url('../images/background.webp');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin-top: 55px;
+}
+
+.left-center{
+    padding-left: 40px;
+}
+
+.middle-center{
+}
+
+.right-center{
+}
+
+.greeting{
+    color: white;
+    font-size: 70px;
+    margin-top: 0px;
+    padding-top: 40px;
+    text-shadow: 0 0 8px rgb(0, 191, 255), 0 0 16px rgb(20, 8, 161), 0 0 24px rgb(19, 4, 181);
+}
+
+.about-description p{
+    color: white;
+    margin-top: 40px;
+    margin-bottom: 0px;
+}
+
+.profile-picture{
+    margin-top: 40px;
+    height: 450px;
+    border-radius: 250px;
+    border: 5px solid white;
+    object-fit: cover;
+}
