@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skills - Corban's Website</title>
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/body.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/skills.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        // Dynamically load header and footer
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load header
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => document.getElementById("header").innerHTML = data);
+
+            // Load footer
+            fetch("footer.html")
+                .then(response => response.text())
+                .then(data => document.getElementById("footer").innerHTML = data);
+
+            // Load the pie chart after DOM loads
+            const createPieChart = () => {
+                const ctx = document.getElementById('skillsPieChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Python', 'C++', 'HTML/CSS', 'JavaScript', 'Terraform', 'Azure', 'GCP', 'Flask', 'Django', 'React.js'],
+                        datasets: [{
+                            data: [20, 15, 15, 10, 10, 10, 10, 5, 3, 2], // Adjust percentages as needed
+                            backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#e91e63', '#9c27b0', '#00bcd4', '#ffc107', '#3f51b5', '#8bc34a', '#ff5722'],
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (context) {
+                                        return `${context.label}: ${context.raw}%`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            };
+
+            window.onload = createPieChart;
+        });
+    </script>
+</head>
+<body>
+    <!-- Placeholder for Header -->
+    <div id="header"></div>
+
+    <!-- Page-Specific Content -->
+    <main class="skills-container">
+        <h1>Skills</h1>
+
+        <!-- Skills List Section -->
+        <section>
+            <ul class="skills-list">
+                <!-- Programming Languages -->
+                <li>
+                    <div class="skill-name">Python</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 90%;">90%</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="skill-name">C++</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 85%;">85%</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="skill-name">HTML/CSS</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 80%;">80%</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="skill-name">JavaScript</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 70%;">70%</div>
+                    </div>
+                </li>
+                <!-- Frameworks and Libraries -->
+                <li>
+                    <div class="skill-name">Django</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 75%;">75%</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="skill-name">Flask</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 70%;">70%</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="skill-name">React.js</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 65%;">65%</div>
+                    </div>
+                </li>
+                <!-- Tools and Platforms -->
+                <li>
+                    <div class="skill-name">Terraform</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 60%;">60%</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="skill-name">Azure</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 60%;">60%</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="skill-name">Google Cloud Platform</div>
+                    <div class="skill-bar">
+                        <div class="confidence-level" style="width: 60%;">60%</div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Pie Chart Section -->
+        <section class="chart-section">
+            <h2>Language Usage</h2>
+            <canvas id="skillsPieChart"></canvas>
+        </section>
+    </main>
+
+    <!-- Placeholder for Footer -->
+    <div id="footer"></div>
+</body>
+</html>
