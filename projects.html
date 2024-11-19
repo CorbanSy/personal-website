@@ -1,9 +1,89 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Projects - Corban's Website</title>
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/body.css">
+        <link rel="stylesheet" href="styles/general.css">
+        <link rel="stylesheet" href="styles/footer.css">
+        <link rel="stylesheet" href="styles/projects.css"> <!-- New CSS for the grid -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <script>
+            // Dynamically load header and footer
+            document.addEventListener("DOMContentLoaded", function() {
+                // Load header
+                fetch("header.html")
+                    .then(response => response.text())
+                    .then(data => document.getElementById("header").innerHTML = data);
 
+                // Load footer
+                fetch("footer.html")
+                    .then(response => response.text())
+                    .then(data => document.getElementById("footer").innerHTML = data);
+            });
+        </script>
     </head>
     <body>
-        
+        <!-- Placeholder for Header -->
+        <div id="header"></div>
+
+        <!-- Page-Specific Content -->
+        <div class="projects-center">
+            <!-- Project Grid Section -->
+            <section class="project-grid">
+                <!-- Project 1 -->
+                <div class="project-preview">
+                    <div class="thumbnail-row">
+                        <a href="https://github.com/CorbanSy/Fashion_Project.git" target="_blank">
+                            <img class="thumbnail" src="images/stylesavvy.jpg" alt="Project 1 Thumbnail">
+                            <div class="project-time">Completed: 2024</div>
+                        </a>
+                    </div>
+                    <div class="project-info-grid">
+                        <div class="project-info">
+                            <p class="project-title">
+                                Project 1: StyleSavvy
+                            </p>
+                            <p class="project-description">
+                                StyleSavvy is an innovative fashion recommendation app designed to elevate your style 
+                                with the help of cutting-edge technology. Combining AI and user-friendly design, StyleSavvy 
+                                empowers users to manage their wardrobe, rate outfits, and receive personalized fashion advice.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-preview">
+                    <div class="thumbnail-row">
+                        <a href="https://github.com/CorbanSy/html-css-course.git" target="_blank">
+                            <img class="thumbnail" src="images/youtube.png" alt="Project 2 Thumbnail">
+                            <div class="project-time">Completed: 2024</div>
+                        </a>
+                    </div>
+                    <div class="project-info-grid">
+                        <div class="project-info">
+                            <p class="project-title">
+                                Project 2: Youtube Frontend Clone
+                            </p>
+                            <p class="project-description">
+                                This YouTube Clone replicates YouTube's core layout using HTML and CSS. 
+                                It features a responsive header with search functionality, a sidebar 
+                                for navigation, and a video grid displaying thumbnails, titles, 
+                                channels, and views. The project highlights clean design and modern 
+                                web development techniques.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more projects as needed -->
+            </section>
+        </div>
+
+        <!-- Placeholder for Footer -->
+        <div id="footer"></div>
     </body>
 </html>
