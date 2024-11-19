@@ -1,64 +1,46 @@
-/* General container for the skills section */
-.skills-container {
-    padding: 20px;
-    background-color: #f9f9f9;
+/* Add the background image to the entire page */
+body {
+    margin: 0;
     font-family: 'Roboto', sans-serif;
+    background: url('../images/background.webp') no-repeat center center fixed; /* Ensure the background is fixed */
+    background-size: cover; /* Make the image cover the entire viewport */
+    color: #fff; /* Default text color for better readability */
 }
 
-.skills-container h1, .skills-container h2 {
+/* General container for the skills section */
+.skills-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #fff; /* Ensures text in the container is readable */
+}
+
+.skills-container h1 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 2em;
-    color: #333;
+    color: #fff; /* Ensures the heading contrasts with the background */
 }
 
-/* Skills list styles */
-.skills-list {
-    list-style: none;
-    padding: 0;
-    max-width: 800px;
-    margin: 0 auto 40px;
-}
-
-.skills-list li {
+/* Flexbox layout for charts */
+.charts-container {
     display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    gap: 20px; /* Space between charts */
+    margin: 20px 0;
 }
 
-.skill-name {
-    flex: 1;
-    font-weight: 500;
-    color: #555;
-}
-
-.skill-bar {
-    flex: 2;
-    background-color: #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 20px;
-    position: relative;
-}
-
-.confidence-level {
-    background-color: #4caf50;
-    color: white;
-    font-size: 0.9em;
-    line-height: 20px;
+.chart {
     text-align: center;
-    height: 100%;
+    flex: 1 1 300px; /* Ensures charts scale responsively */
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.7); /* Adds a semi-transparent background for better readability */
     border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Adds subtle shadow */
 }
 
-/* Chart section styles */
-.chart-section {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-#skillsPieChart {
-    max-width: 100%;
+.chart canvas {
+    width: 100%;
     height: auto;
 }
