@@ -1,6 +1,7 @@
 /* General Styles for the Page */
 body {
     margin: 0px;
+    margin-top: 60px;
     font-family: 'Roboto', sans-serif;
     background: url('../images/background.webp') no-repeat center center; /* Ensure the background is fixed */
     background-size: cover; /* Make the image cover the entire viewport */
@@ -23,9 +24,9 @@ body {
     align-items: center;
     position: relative;
     max-width: 1200px;
-    overflow: hidden; /* Hide overflowing projects */
-    padding: 20px 0;
-    margin: 100px auto;
+    overflow: hidden; /* Ensure overflow is hidden */
+    padding: 0; /* Remove unnecessary padding */
+    margin: 20px auto; /* Adjust spacing around carousel */
 }
 
 /* Carousel Buttons */
@@ -57,34 +58,36 @@ body {
     right: 10px;
 }
 
-/* Carousel Container */
 .carousel-container {
-    overflow: hidden;
-    flex-grow: 1;
-    width: 100%;
+    overflow: hidden; /* Hide the overflow to ensure only visible items are shown */
+    width: calc(3 * (33.33% + 20px)); /* Set width to fit exactly 3 projects, accounting for gap */
+    max-width: 1200px; /* Optional: Set a max-width to ensure it doesn’t get too large on larger screens */
+    margin: auto;
+    display: flex;
+    justify-content: center; /* Center the carousel */
 }
 
-/* Projects Wrapper */
 .projects-wrapper {
     display: flex;
     transition: transform 0.5s ease-in-out;
     gap: 20px; /* Space between projects */
-    will-change: transform; /* Optimize rendering performance */
+    width: fit-content; /* Allow the wrapper to have dynamic width based on children */
 }
 
-/* Individual Project Card */
 .project-preview {
-    flex: 0 0 30%; /* 3 items visible in the container */
+    position: relative;
+    flex: 1; /* Distribute space evenly among all cards */
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
-    height: 450px; /* Consistent card height */
+    height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-sizing: border-box; /* Includes padding in width/height */
+    box-sizing: border-box;
+    margin: 0;
 }
 
 .project-preview:hover {
@@ -136,9 +139,8 @@ body {
     -webkit-box-orient: vertical;
 }
 
-/* Completion Time Styling */
 .project-time {
-    position: absolute;
+    position: absolute; /* This should now work properly relative to .project-preview */
     bottom: 10px;
     right: 10px;
     background-color: rgba(0, 0, 0, 0.7);
@@ -146,6 +148,20 @@ body {
     padding: 5px 10px;
     border-radius: 4px;
     font-size: 0.85em;
+    display: none; /* Hide initially */
+}
+
+.project-info-grid {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This will space out child elements evenly */
+    height: 180px; /* Or a value that works well for all cards */
+    box-sizing: border-box;
+}
+
+.project-preview:hover .project-time {
+    display: block; /* Show on hover */
 }
 
 /* Footer */
@@ -156,3 +172,5 @@ body {
     color: #fff;
     background: rgba(0, 0, 0, 0.8);
 }
+
+

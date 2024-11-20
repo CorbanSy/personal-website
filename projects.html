@@ -28,7 +28,9 @@
                 const rightBtn = document.querySelector(".right-btn");
 
                 let scrollPosition = 0;
-                const projectWidth = wrapper.querySelector(".project-preview").offsetWidth + 20; // Includes margin
+                const projectWidth = wrapper.querySelector(".project-preview").offsetWidth;
+                const visibleProjects = 3; // Number of visible projects
+                const wrapperWidth = projectWidth * visibleProjects + (20 * (visibleProjects - 1)); // Account for gaps
 
                 // Adjust button visibility
                 const updateButtonVisibility = () => {
@@ -95,7 +97,7 @@
                         <div class="thumbnail-row">
                             <a href="https://github.com/CorbanSy/html-css-course.git" target="_blank">
                                 <img class="thumbnail" src="images/youtube.png" alt="Project 2 Thumbnail">
-                                <div class="project-time">Completed: 2024</div>
+                                <div class="project-time">Completed: 2025</div>
                             </a>
                         </div>
                         <div class="project-info-grid">
@@ -113,7 +115,7 @@
                         <div class="thumbnail-row">
                             <a href="https://github.com/CorbanSy/another_project.git" target="_blank">
                                 <img class="thumbnail" src="images/youtube.png" alt="Project 3 Thumbnail">
-                                <div class="project-time">Completed: 2023</div>
+                                <div class="project-time">Completed: 2026</div>
                             </a>
                         </div>
                         <div class="project-info-grid">
@@ -130,7 +132,41 @@
                         <div class="thumbnail-row">
                             <a href="https://github.com/CorbanSy/another_project.git" target="_blank">
                                 <img class="thumbnail" src="images/youtube.png" alt="Project 3 Thumbnail">
-                                <div class="project-time">Completed: 2023</div>
+                                <div class="project-time">Completed: 2027</div>
+                            </a>
+                        </div>
+                        <div class="project-info-grid">
+                            <p class="project-title">Project 3: Another Project</p>
+                            <p class="project-description">
+                                Another project showcasing advanced skills in web development with focus on design
+                                and usability.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-preview">
+                        <div class="thumbnail-row">
+                            <a href="https://github.com/CorbanSy/another_project.git" target="_blank">
+                                <img class="thumbnail" src="images/youtube.png" alt="Project 3 Thumbnail">
+                                <div class="project-time">Completed: 2028</div>
+                            </a>
+                        </div>
+                        <div class="project-info-grid">
+                            <p class="project-title">Project 3: Another Project</p>
+                            <p class="project-description">
+                                Another project showcasing advanced skills in web development with focus on design
+                                and usability.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="project-preview">
+                        <div class="thumbnail-row">
+                            <a href="https://github.com/CorbanSy/another_project.git" target="_blank">
+                                <img class="thumbnail" src="images/youtube.png" alt="Project 3 Thumbnail">
+                                <div class="project-time">Completed: 2029</div>
                             </a>
                         </div>
                         <div class="project-info-grid">
