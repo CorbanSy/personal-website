@@ -32,6 +32,17 @@
         function closeModal(id) {
             document.getElementById(`${id}-modal`).style.display = "none";
         }
+
+        function openTimelineItem(id) {
+        // Hide all timeline items first
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.classList.remove('show');
+        });
+
+    // Show the clicked timeline item
+    document.getElementById(`${id}-item`).classList.add('show');
+}
+
     </script>
 </head>
 <body>
@@ -42,39 +53,43 @@
         <h1>Education</h1>
         <div class="horizontal-line-container">
             <div class="horizontal-line"></div>
-            <div class="timeline-point" style="left: 10%;">
+            <div class="timeline-point" style="left: 10%;" onclick="openTimelineItem('rbhs')">
+                <img src="images/rbhs_mascot.jpg" alt="RBHS Mascot" class="timeline-mascot">
                 <div class="timeline-label">RBHS</div>
             </div>
-            <div class="timeline-point" style="left: 50%;">
+            <div class="timeline-point" style="left: 50%;" onclick="openTimelineItem('palomar')">
+                <img src="images/palomar_mascot.jpg" alt="Palomar College Mascot" class="timeline-mascot">
                 <div class="timeline-label">Palomar College</div>
             </div>
-            <div class="timeline-point" style="left: 90%;">
+            <div class="timeline-point" style="left: 90%;" onclick="openTimelineItem('csusm')">
+                <img src="images/csusm_mascot.jpg" alt="CSUSM Mascot" class="timeline-mascot">
                 <div class="timeline-label">CSUSM</div>
             </div>
         </div>
         <div class="timeline horizontal-timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h2>2020 - 2022</h2>
-                    <p>Attended Palomar College - General Education and Computer Science Prerequisites</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h2>2022 - 2024</h2>
-                    <p>California State University San Marcos (CSUSM) - Bachelor of Science in Computer Science</p>
-                    <p><strong>Relevant Coursework:</strong> Data Structures & Algorithms | Computer Architecture | Cloud Computing | AI | Computer Security | Database Systems | Networking | Software Engineering | Programming Languages</p>
-                    <p><strong>Clubs:</strong> Google Developer Student Club (GDSC), Chess Club</p>
-                </div>
-            </div>
-            <div class="timeline-item">
+            <div class="timeline-item" id="rbhs-item">
                 <div class="timeline-content">
                     <h2>Graduated: 2020</h2>
                     <p>Rancho Bernardo High School (RBHS) - High School Diploma</p>
                 </div>
             </div>
+            <div class="timeline-item" id="palomar-item">
+                <div class="timeline-content">
+                    <h2>Transferred: 2020 - 2022</h2>
+                    <p>Attended Palomar College - General Education and Computer Science Prerequisites</p>
+                </div>
+            </div>
+            <div class="timeline-item" id="csusm-item">
+                <div class="timeline-content">
+                    <h2>Graduated: 2022 - 2024</h2>
+                    <p>California State University San Marcos (CSUSM) - Bachelor of Science in Computer Science</p>
+                    <p><strong>Relevant Coursework:</strong> Data Structures & Algorithms | Computer Architecture | Cloud Computing | AI | Computer Security | Database Systems | Networking | Software Engineering | Programming Languages</p>
+                    <p><strong>Clubs:</strong> Google Developer Student Club (GDSC), Chess Club</p>
+                </div>
+            </div>
         </div>
     </section>
+    
 
     <button onclick="openModal('csusm')">More about GDSC Club</button>
 

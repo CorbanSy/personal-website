@@ -11,9 +11,21 @@ body {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.85); /* Added slight opacity to make it stand out against the background */
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 h1 {
@@ -21,47 +33,98 @@ h1 {
     margin-bottom: 30px;
 }
 
-.education-item {
-    margin-bottom: 30px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.education-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.education-item h2 {
-    font-size: 1.5em;
-    margin-bottom: 5px;
-}
-
-.education-item p {
-    margin: 5px 0;
-}
-
-.horizontal-timeline {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 20px 0;
-    gap: 20px;
-}
-
 .timeline-item {
+    display: none; /* Hide all timeline items by default */
     flex: 0 0 auto;
     width: 250px;
     margin-bottom: 20px;
     position: relative;
     padding: 10px;
-}
-
-.timeline-content {
     background: #f9f9f9;
-    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.timeline-item.show {
+    display: block; /* Display the timeline item when it has the "show" class */
+}
+
+.timeline-item:hover {
+    transform: scale(1.05);
+}
+
+.horizontal-line-container {
+    position: relative;
+    margin: 20px 0;
+    height: 150px; /* Increased to accommodate vertical lines */
+}
+
+.horizontal-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #4caf50, #2196f3);
+    transform: translateY(-50%);
+}
+
+.timeline-point {
+    position: absolute;
+    top: 60%; /* Adjusted to accommodate mascot image above */
+    width: 20px;
+    height: 20px;
+    background-color: #4caf50;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.timeline-point:hover {
+    box-shadow: 0 0 15px #4caf50;
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.timeline-mascot {
+    position: absolute;
+    top: -100%; /* Position the image above the point */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 60px; /* Restrict the size to avoid overwhelming the layout */
+    height: auto;
+    border-radius: 50%; /* Optional: Make the mascot image circular if desired */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.timeline-mascot:hover {
+    transform: translateX(-50%) scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 128, 0, 0.5);
+}
+
+.timeline-label {
+    position: absolute;
+    top: 140%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+.timeline-label:hover {
+    color: #4caf50;
+}
+
+.vertical-line {
+    position: absolute;
+    width: 4px;
+    height: 40%;
+    background-color: #333;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .modal {
@@ -96,40 +159,4 @@ h1 {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-}
-
-.horizontal-line-container {
-    position: relative;
-    margin: 20px 0;
-    height: 100px;
-}
-
-.horizontal-line {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background-color: #333;
-    transform: translateY(-50%);
-}
-
-.timeline-point {
-    position: absolute;
-    top: 50%;
-    width: 20px;
-    height: 20px;
-    background-color: #4caf50;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.timeline-label {
-    position: absolute;
-    top: 130%;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-weight: bold;
-    color: #333;
 }
