@@ -145,6 +145,61 @@
                     }
                 }
             });
+            function toggleTechDetails(id) {
+                const techDetails = document.getElementById(id);
+                if (techDetails.style.display === 'none' || techDetails.style.display === '') {
+                    techDetails.style.display = 'block';
+                    populateTechDetails(techDetails, id); // Populate the details when opened
+                } else {
+                    techDetails.style.display = 'none';
+                }
+            }
+
+            function populateTechDetails(container, projectId) {
+                // Clear existing content
+                container.innerHTML = '';
+
+                // Define technologies for each project (these can be customized per project)
+                let technologies = {};
+                if (projectId === 'project1-tech') {
+                    technologies = {
+                        'JavaScript': 53,
+                        'Python': 25,
+                        'CSS': 21,
+                        'Other': 1
+                    };
+                } else if (projectId === 'project2-tech') {
+                    technologies = {
+                        'HTML': 40,
+                        'CSS': 35,
+                        'JavaScript': 25
+                    };
+                } else if (projectId === 'project3-tech') {
+                    technologies = {
+                        'Python': 60,
+                        'Django': 30,
+                        'Other': 10
+                    };
+                }
+
+                // Generate the bars for each technology
+                for (const [tech, percentage] of Object.entries(technologies)) {
+                    const techBar = document.createElement('div');
+                    techBar.className = 'tech-bar';
+                    
+                    const techLabel = document.createElement('span');
+                    techLabel.textContent = `${tech} ${percentage}%`;
+
+                    const progressBar = document.createElement('div');
+                    progressBar.className = `progress ${tech.toLowerCase()}`;
+                    progressBar.style.setProperty('--width', `${percentage}%`);
+
+                    techBar.appendChild(techLabel);
+                    techBar.appendChild(progressBar);
+                    container.appendChild(techBar);
+                }
+            }
+
         };
     </script>
 </head>
@@ -155,7 +210,10 @@
     <!-- Page-Specific Content -->
     <main class="skills-container">
         <h1>Skills & Technologies</h1>
-    
+
+        <!-- Skill Efficiency Title -->
+        <h2 class="skills-section-title">Skill Efficiency</h2>
+
         <!-- Skills List with Confidence Scale -->
         <section class="skills-list">
             <h2>Programming Languages</h2>
@@ -175,7 +233,7 @@
                 <span>HTML</span>
                 <div class="confidence-bar" data-level="3"></div>
             </div>
-    
+
             <h2>Frameworks</h2>
             <div class="skill-item">
                 <span>Django</span>
@@ -189,12 +247,10 @@
                 <span>React.js</span>
                 <div class="confidence-bar" data-level="3"></div>
             </div>
-    
+
             <h2>Libraries</h2>
             <div class="skill-item">
-                <span class="tooltip">Pandas
-                    <span class="tooltiptext">Data analysis and manipulation tool</span>
-                </span>
+                <span>Pandas</span>
                 <div class="confidence-bar" data-level="4"></div>
             </div>
             <div class="skill-item">
@@ -213,7 +269,7 @@
                 <span>OpenAI API</span>
                 <div class="confidence-bar" data-level="3"></div>
             </div>
-    
+
             <h2>Tools</h2>
             <div class="skill-item">
                 <span>Jira</span>
@@ -231,7 +287,7 @@
                 <span>Trello</span>
                 <div class="confidence-bar" data-level="3"></div>
             </div>
-    
+
             <h2>Platforms</h2>
             <div class="skill-item">
                 <span>Terraform</span>
@@ -250,7 +306,10 @@
                 <div class="confidence-bar" data-level="4"></div>
             </div>
         </section>
-    
+
+        <!-- Skills Frequency Title -->
+        <h2 class="skills-section-title">Skills Frequency</h2>
+
         <!-- Pie Charts Section -->
         <section class="charts-container">
             <!-- Programming Languages -->
@@ -258,25 +317,25 @@
                 <h2>Programming Languages</h2>
                 <canvas id="languagesPieChart"></canvas>
             </div>
-    
+
             <!-- Frameworks -->
             <div class="chart">
                 <h2>Frameworks</h2>
                 <canvas id="frameworksPieChart"></canvas>
             </div>
-    
+
             <!-- Libraries -->
             <div class="chart">
                 <h2>Libraries</h2>
                 <canvas id="librariesPieChart"></canvas>
             </div>
-    
+
             <!-- Tools -->
             <div class="chart">
                 <h2>Tools</h2>
                 <canvas id="toolsPieChart"></canvas>
             </div>
-    
+
             <!-- Platforms -->
             <div class="chart">
                 <h2>Platforms</h2>
@@ -284,7 +343,6 @@
             </div>
         </section>
     </main>
-    
 
     <!-- Placeholder for Footer -->
     <div id="footer"></div>

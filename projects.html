@@ -23,45 +23,121 @@
                     .then((data) => (document.getElementById("footer").innerHTML = data));
 
                 // Carousel functionality
-                const wrapper = document.querySelector(".projects-wrapper");
+                const container = document.querySelector(".carousel-container");
                 const leftBtn = document.querySelector(".left-btn");
                 const rightBtn = document.querySelector(".right-btn");
 
-                let scrollPosition = 0;
-                const projectWidth = wrapper.querySelector(".project-preview").offsetWidth;
-                const visibleProjects = 3; // Number of visible projects
-                const wrapperWidth = projectWidth * visibleProjects + (20 * (visibleProjects - 1)); // Account for gaps
+                // Width of each project card, including margin
+                const projectWidth = container.querySelector(".project-preview").offsetWidth + 20; // Adding 20px for the gap
 
                 // Adjust button visibility
                 const updateButtonVisibility = () => {
-                    leftBtn.style.display = scrollPosition < 0 ? "block" : "none";
+                    leftBtn.style.display = container.scrollLeft > 0 ? "block" : "none";
                     rightBtn.style.display =
-                        Math.abs(scrollPosition) < wrapper.scrollWidth - wrapper.offsetWidth
+                        container.scrollLeft < container.scrollWidth - container.clientWidth
                             ? "block"
                             : "none";
                 };
 
                 // Event Listener for Right Button
                 rightBtn.addEventListener("click", () => {
-                    if (Math.abs(scrollPosition) < wrapper.scrollWidth - wrapper.offsetWidth) {
-                        scrollPosition -= projectWidth * 3; // Scroll by 3 projects
-                        wrapper.style.transform = `translateX(${scrollPosition}px)`;
-                        updateButtonVisibility();
-                    }
+                    container.scrollBy({
+                        left: projectWidth * 3, // Scroll by 3 projects' width
+                        behavior: 'smooth'
+                    });
                 });
 
                 // Event Listener for Left Button
                 leftBtn.addEventListener("click", () => {
-                    if (scrollPosition < 0) {
-                        scrollPosition += projectWidth * 3; // Scroll back by 3 projects
-                        wrapper.style.transform = `translateX(${scrollPosition}px)`;
-                        updateButtonVisibility();
-                    }
+                    container.scrollBy({
+                        left: -projectWidth * 3, // Scroll back by 3 projects' width
+                        behavior: 'smooth'
+                    });
                 });
 
                 // Initialize button visibility
                 updateButtonVisibility();
+
+                // Update button visibility when scrolling manually
+                container.addEventListener('scroll', updateButtonVisibility);
+
+                // Toggle Technology Details
+                document.querySelectorAll('.tech-button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const techDetailsId = button.getAttribute('data-tech-id');
+                        const techDetails = document.getElementById(techDetailsId);
+                        if (techDetails.style.display === 'none' || techDetails.style.display === '') {
+                            techDetails.style.display = 'block';
+                            populateTechDetails(techDetails, techDetailsId);
+                        } else {
+                            techDetails.style.display = 'none';
+                        }
+                    });
+                });
             });
+
+            function populateTechDetails(container, projectId) {
+                // Clear existing content
+                container.innerHTML = '';
+
+                // Define technologies for each project
+                let technologies = {};
+                if (projectId === 'project1-tech') {
+                    technologies = {
+                        'JavaScript': 53,
+                        'Python': 25,
+                        'CSS': 21,
+                        'Other': 1
+                    };
+                } else if (projectId === 'project2-tech') {
+                    technologies = {
+                        'HTML': 40,
+                        'CSS': 35,
+                        'JavaScript': 25
+                    };
+                } else if (projectId === 'project3-tech') {
+                    technologies = {
+                        'Python': 60,
+                        'Django': 30,
+                        'Other': 10
+                    };
+                } else if (projectId === 'project4-tech') {
+                    technologies = {
+                        'Python': 60,
+                        'Django': 30,
+                        'Other': 10
+                    };
+                } else if (projectId === 'project5-tech') {
+                    technologies = {
+                        'Python': 60,
+                        'Django': 30,
+                        'Other': 10
+                    };
+                } else if (projectId === 'project6-tech') {
+                    technologies = {
+                        'Python': 60,
+                        'Django': 30,
+                        'Other': 10
+                    };
+                }
+
+                // Generate the bars for each technology
+                for (const [tech, percentage] of Object.entries(technologies)) {
+                    const techBar = document.createElement('div');
+                    techBar.className = 'tech-bar';
+
+                    const techLabel = document.createElement('span');
+                    techLabel.textContent = `${tech} ${percentage}%`;
+
+                    const progressBar = document.createElement('div');
+                    progressBar.className = `progress ${tech.toLowerCase()}`;
+                    progressBar.style.setProperty('--width', `${percentage}%`);
+
+                    techBar.appendChild(techLabel);
+                    techBar.appendChild(progressBar);
+                    container.appendChild(techBar);
+                }
+            }
         </script>
     </head>
     <body>
@@ -89,6 +165,13 @@
                                 with the help of cutting-edge technology. Combining AI and user-friendly design, StyleSavvy
                                 empowers users to manage their wardrobe, rate outfits, and receive personalized fashion advice.
                             </p>
+                            <!-- Button to Toggle Technology Usage -->
+                            <button class="tech-button" data-tech-id="project1-tech">Show Technologies</button>
+                            
+                            <!-- Technology Details Section -->
+                            <div id="project1-tech" class="tech-details">
+                                <!-- Technology Bars (Populated via JavaScript) -->
+                            </div>
                         </div>
                     </div>
 
@@ -107,6 +190,8 @@
                                 a responsive header with search functionality, a sidebar for navigation, and a video
                                 grid displaying thumbnails, titles, channels, and views.
                             </p>
+                            <button class="tech-button" data-tech-id="project2-tech">Show Technologies</button>
+                            <div id="project2-tech" class="tech-details"></div>
                         </div>
                     </div>
 
@@ -124,15 +209,62 @@
                                 Another project showcasing advanced skills in web development with focus on design
                                 and usability.
                             </p>
+                            <button class="tech-button" data-tech-id="project3-tech">Show Technologies</button>
+                            <div id="project3-tech" class="tech-details"></div>
                         </div>
                     </div>
 
-                    <!-- Project 4 -->
+                    <!-- Project 1 -->
+                    <div class="project-preview">
+                        <div class="thumbnail-row">
+                            <a href="https://github.com/CorbanSy/Fashion_Project.git" target="_blank">
+                                <img class="thumbnail" src="images/stylesavvy.jpg" alt="Project 1 Thumbnail">
+                                <div class="project-time">Completed: 2024</div>
+                            </a>
+                        </div>
+                        <div class="project-info-grid">
+                            <p class="project-title">Project 1: StyleSavvy</p>
+                            <p class="project-description">
+                                StyleSavvy is an innovative fashion recommendation app designed to elevate your style
+                                with the help of cutting-edge technology. Combining AI and user-friendly design, StyleSavvy
+                                empowers users to manage their wardrobe, rate outfits, and receive personalized fashion advice.
+                            </p>
+                            <!-- Button to Toggle Technology Usage -->
+                            <button class="tech-button" data-tech-id="project1-tech">Show Technologies</button>
+                            
+                            <!-- Technology Details Section -->
+                            <div id="project4-tech" class="tech-details">
+                                <!-- Technology Bars (Populated via JavaScript) -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-preview">
+                        <div class="thumbnail-row">
+                            <a href="https://github.com/CorbanSy/html-css-course.git" target="_blank">
+                                <img class="thumbnail" src="images/youtube.png" alt="Project 2 Thumbnail">
+                                <div class="project-time">Completed: 2025</div>
+                            </a>
+                        </div>
+                        <div class="project-info-grid">
+                            <p class="project-title">Project 2: YouTube Frontend Clone</p>
+                            <p class="project-description">
+                                This YouTube Clone replicates YouTube's core layout using HTML and CSS. It features
+                                a responsive header with search functionality, a sidebar for navigation, and a video
+                                grid displaying thumbnails, titles, channels, and views.
+                            </p>
+                            <button class="tech-button" data-tech-id="project2-tech">Show Technologies</button>
+                            <div id="project5-tech" class="tech-details"></div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
                     <div class="project-preview">
                         <div class="thumbnail-row">
                             <a href="https://github.com/CorbanSy/another_project.git" target="_blank">
                                 <img class="thumbnail" src="images/youtube.png" alt="Project 3 Thumbnail">
-                                <div class="project-time">Completed: 2027</div>
+                                <div class="project-time">Completed: 2026</div>
                             </a>
                         </div>
                         <div class="project-info-grid">
@@ -141,40 +273,8 @@
                                 Another project showcasing advanced skills in web development with focus on design
                                 and usability.
                             </p>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 -->
-                    <div class="project-preview">
-                        <div class="thumbnail-row">
-                            <a href="https://github.com/CorbanSy/another_project.git" target="_blank">
-                                <img class="thumbnail" src="images/youtube.png" alt="Project 3 Thumbnail">
-                                <div class="project-time">Completed: 2028</div>
-                            </a>
-                        </div>
-                        <div class="project-info-grid">
-                            <p class="project-title">Project 3: Another Project</p>
-                            <p class="project-description">
-                                Another project showcasing advanced skills in web development with focus on design
-                                and usability.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 -->
-                    <div class="project-preview">
-                        <div class="thumbnail-row">
-                            <a href="https://github.com/CorbanSy/another_project.git" target="_blank">
-                                <img class="thumbnail" src="images/youtube.png" alt="Project 3 Thumbnail">
-                                <div class="project-time">Completed: 2029</div>
-                            </a>
-                        </div>
-                        <div class="project-info-grid">
-                            <p class="project-title">Project 3: Another Project</p>
-                            <p class="project-description">
-                                Another project showcasing advanced skills in web development with focus on design
-                                and usability.
-                            </p>
+                            <button class="tech-button" data-tech-id="project3-tech">Show Technologies</button>
+                            <div id="project6-tech" class="tech-details"></div>
                         </div>
                     </div>
                 </div>

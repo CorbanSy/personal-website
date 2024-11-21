@@ -266,3 +266,12 @@ h1 {
     visibility: visible;
     opacity: 1;
 }
+
+.skills-section-title {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #4caf50; /* Make it pop */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
