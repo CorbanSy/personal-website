@@ -33,31 +33,10 @@ h1 {
     margin-bottom: 30px;
 }
 
-.timeline-item {
-    display: none; /* Hide all timeline items by default */
-    flex: 0 0 auto;
-    width: 250px;
-    margin-bottom: 20px;
-    position: relative;
-    padding: 10px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.4s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.timeline-item.show {
-    display: block; /* Display the timeline item when it has the "show" class */
-}
-
-.timeline-item:hover {
-    transform: scale(1.05);
-}
-
 .horizontal-line-container {
     position: relative;
     margin: 20px 0;
-    height: 150px; /* Increased to accommodate vertical lines */
+    height: 150px;
 }
 
 .horizontal-line {
@@ -72,13 +51,14 @@ h1 {
 
 .timeline-point {
     position: absolute;
-    top: 60%; /* Adjusted to accommodate mascot image above */
+    top: 60%;
     width: 20px;
     height: 20px;
     background-color: #4caf50;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .timeline-point:hover {
@@ -88,12 +68,12 @@ h1 {
 
 .timeline-mascot {
     position: absolute;
-    top: -100%; /* Position the image above the point */
+    top: -100%;
     left: 50%;
     transform: translateX(-50%);
-    max-width: 60px; /* Restrict the size to avoid overwhelming the layout */
+    max-width: 60px;
     height: auto;
-    border-radius: 50%; /* Optional: Make the mascot image circular if desired */
+    border-radius: 50%;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -117,46 +97,28 @@ h1 {
     color: #4caf50;
 }
 
-.vertical-line {
-    position: absolute;
-    width: 4px;
-    height: 40%;
-    background-color: #333;
-    top: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.modal {
+.education-detail {
     display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: 5% auto;
+    margin-top: 30px;
     padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.5s ease-in-out;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.education-detail.show {
+    display: block;
 }
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
+

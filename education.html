@@ -25,24 +25,15 @@
                 .then((data) => (document.getElementById("footer").innerHTML = data));
         });
 
-        function openModal(id) {
-            document.getElementById(`${id}-modal`).style.display = "block";
+        function showEducationDetails(id) {
+            // Hide all education details first
+            document.querySelectorAll('.education-detail').forEach(item => {
+                item.classList.remove('show');
+            });
+
+            // Show the clicked education details
+            document.getElementById(`${id}-details`).classList.add('show');
         }
-
-        function closeModal(id) {
-            document.getElementById(`${id}-modal`).style.display = "none";
-        }
-
-        function openTimelineItem(id) {
-        // Hide all timeline items first
-        document.querySelectorAll('.timeline-item').forEach(item => {
-            item.classList.remove('show');
-        });
-
-    // Show the clicked timeline item
-    document.getElementById(`${id}-item`).classList.add('show');
-}
-
     </script>
 </head>
 <body>
@@ -53,53 +44,37 @@
         <h1>Education</h1>
         <div class="horizontal-line-container">
             <div class="horizontal-line"></div>
-            <div class="timeline-point" style="left: 10%;" onclick="openTimelineItem('rbhs')">
+            <div class="timeline-point" style="left: 10%;" onclick="showEducationDetails('rbhs')">
                 <img src="images/rbhs_mascot.jpg" alt="RBHS Mascot" class="timeline-mascot">
                 <div class="timeline-label">RBHS</div>
             </div>
-            <div class="timeline-point" style="left: 50%;" onclick="openTimelineItem('palomar')">
+            <div class="timeline-point" style="left: 50%;" onclick="showEducationDetails('palomar')">
                 <img src="images/palomar_mascot.jpg" alt="Palomar College Mascot" class="timeline-mascot">
                 <div class="timeline-label">Palomar College</div>
             </div>
-            <div class="timeline-point" style="left: 90%;" onclick="openTimelineItem('csusm')">
+            <div class="timeline-point" style="left: 90%;" onclick="showEducationDetails('csusm')">
                 <img src="images/csusm_mascot.jpg" alt="CSUSM Mascot" class="timeline-mascot">
                 <div class="timeline-label">CSUSM</div>
             </div>
         </div>
-        <div class="timeline horizontal-timeline">
-            <div class="timeline-item" id="rbhs-item">
-                <div class="timeline-content">
-                    <h2>Graduated: 2020</h2>
-                    <p>Rancho Bernardo High School (RBHS) - High School Diploma</p>
-                </div>
-            </div>
-            <div class="timeline-item" id="palomar-item">
-                <div class="timeline-content">
-                    <h2>Transferred: 2020 - 2022</h2>
-                    <p>Attended Palomar College - General Education and Computer Science Prerequisites</p>
-                </div>
-            </div>
-            <div class="timeline-item" id="csusm-item">
-                <div class="timeline-content">
-                    <h2>Graduated: 2022 - 2024</h2>
-                    <p>California State University San Marcos (CSUSM) - Bachelor of Science in Computer Science</p>
-                    <p><strong>Relevant Coursework:</strong> Data Structures & Algorithms | Computer Architecture | Cloud Computing | AI | Computer Security | Database Systems | Networking | Software Engineering | Programming Languages</p>
-                    <p><strong>Clubs:</strong> Google Developer Student Club (GDSC), Chess Club</p>
-                </div>
-            </div>
+
+        <div id="rbhs-details" class="education-detail">
+            <h2>Graduated: 2020</h2>
+            <p>Rancho Bernardo High School (RBHS) - High School Diploma</p>
+        </div>
+
+        <div id="palomar-details" class="education-detail">
+            <h2>Transferred: 2020 - 2022</h2>
+            <p>Attended Palomar College - General Education and Computer Science Prerequisites</p>
+        </div>
+
+        <div id="csusm-details" class="education-detail">
+            <h2>Graduated: 2022 - 2024</h2>
+            <p>California State University San Marcos (CSUSM) - Bachelor of Science in Computer Science</p>
+            <p><strong>Relevant Coursework:</strong> Data Structures & Algorithms | Computer Architecture | Cloud Computing | AI | Computer Security | Database Systems | Networking | Software Engineering | Programming Languages</p>
+            <p><strong>Clubs:</strong> Google Developer Student Club (GDSC), Chess Club</p>
         </div>
     </section>
-    
-
-    <button onclick="openModal('csusm')">More about GDSC Club</button>
-
-    <div id="csusm-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('csusm')">&times;</span>
-            <h2>Google Developer Student Club (GDSC)</h2>
-            <p>The GDSC at CSUSM is a student-run community that helps students grow their technical and leadership skills.</p>
-        </div>
-    </div>
 
     <!-- Placeholder for Footer -->
     <div id="footer"></div>

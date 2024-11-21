@@ -1,26 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skills - Corban's Website</title>
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/body.css">
     <link rel="stylesheet" href="styles/general.css">
     <link rel="stylesheet" href="styles/footer.css">
     <link rel="stylesheet" href="styles/skills.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load header
+            fetch("header.html")
+                .then(response => response.text())
+                .then(data => document.getElementById("header").innerHTML = data);
+
+            // Load footer
+            fetch("footer.html")
+                .then(response => response.text())
+                .then(data => document.getElementById("footer").innerHTML = data);
+
+            // Create the charts
+            createPieCharts();
+        });
+
         // Function to create pie charts
         const createPieCharts = () => {
             // Programming Languages Pie Chart
             new Chart(document.getElementById('languagesPieChart').getContext('2d'), {
                 type: 'pie',
                 data: {
-                    labels: ['Python', 'C++', 'HTML/CSS', 'JavaScript'],
+                    labels: ['Python', 'C++', 'CSS', 'HTML'],
                     datasets: [{
-                        data: [40, 30, 20, 10], // Adjust percentages as needed
+                        data: [30, 25, 25, 20],
                         backgroundColor: ['#4caf50', '#2196f3', '#ff9800', '#e91e63'],
                     }]
                 },
@@ -37,13 +54,13 @@
                 }
             });
 
-            // Frameworks/Libraries Pie Chart
+            // Frameworks Pie Chart
             new Chart(document.getElementById('frameworksPieChart').getContext('2d'), {
                 type: 'pie',
                 data: {
                     labels: ['Django', 'Flask', 'React.js'],
                     datasets: [{
-                        data: [50, 30, 20], // Adjust percentages as needed
+                        data: [40, 30, 30],
                         backgroundColor: ['#9c27b0', '#3f51b5', '#00bcd4'],
                     }]
                 },
@@ -60,14 +77,60 @@
                 }
             });
 
-            // Tools/Platforms Pie Chart
+            // Tools Pie Chart
             new Chart(document.getElementById('toolsPieChart').getContext('2d'), {
                 type: 'pie',
                 data: {
-                    labels: ['Terraform', 'Azure', 'Google Cloud Platform'],
+                    labels: ['Jira', 'Git', 'GitHub', 'Trello'],
                     datasets: [{
-                        data: [40, 35, 25], // Adjust percentages as needed
-                        backgroundColor: ['#ffc107', '#8bc34a', '#ff5722'],
+                        data: [25, 25, 25, 25],
+                        backgroundColor: ['#3f51b5', '#607d8b', '#03a9f4', '#795548'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: context => `${context.label}: ${context.raw}%`
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Platforms Pie Chart
+            new Chart(document.getElementById('platformsPieChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: ['Terraform', 'Azure', 'Google Cloud Platform', 'AWS'],
+                    datasets: [{
+                        data: [20, 25, 20, 35],
+                        backgroundColor: ['#ffc107', '#8bc34a', '#ff5722', '#673ab7'],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        tooltip: {
+                            callbacks: {
+                                label: context => `${context.label}: ${context.raw}%`
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Libraries Pie Chart
+            new Chart(document.getElementById('librariesPieChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: ['Pandas', 'NumPy', 'OpenCV', 'PyTorch', 'OpenAI API'],
+                    datasets: [{
+                        data: [25, 20, 20, 20, 15],
+                        backgroundColor: ['#ff9800', '#009688', '#ff5722', '#8e24aa', '#00acc1'],
                     }]
                 },
                 options: {
@@ -83,22 +146,6 @@
                 }
             });
         };
-
-        // Dynamically load header and footer
-        document.addEventListener("DOMContentLoaded", function () {
-            // Load header
-            fetch("header.html")
-                .then(response => response.text())
-                .then(data => document.getElementById("header").innerHTML = data);
-
-            // Load footer
-            fetch("footer.html")
-                .then(response => response.text())
-                .then(data => document.getElementById("footer").innerHTML = data);
-
-            // Create the charts
-            createPieCharts();
-        });
     </script>
 </head>
 <body>
@@ -107,8 +154,103 @@
 
     <!-- Page-Specific Content -->
     <main class="skills-container">
-        <h1>Skills</h1>
-
+        <h1>Skills & Technologies</h1>
+    
+        <!-- Skills List with Confidence Scale -->
+        <section class="skills-list">
+            <h2>Programming Languages</h2>
+            <div class="skill-item">
+                <span>Python</span>
+                <div class="confidence-bar" data-level="5"></div>
+            </div>
+            <div class="skill-item">
+                <span>C++</span>
+                <div class="confidence-bar" data-level="4"></div>
+            </div>
+            <div class="skill-item">
+                <span>CSS</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+            <div class="skill-item">
+                <span>HTML</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+    
+            <h2>Frameworks</h2>
+            <div class="skill-item">
+                <span>Django</span>
+                <div class="confidence-bar" data-level="4"></div>
+            </div>
+            <div class="skill-item">
+                <span>Flask</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+            <div class="skill-item">
+                <span>React.js</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+    
+            <h2>Libraries</h2>
+            <div class="skill-item">
+                <span class="tooltip">Pandas
+                    <span class="tooltiptext">Data analysis and manipulation tool</span>
+                </span>
+                <div class="confidence-bar" data-level="4"></div>
+            </div>
+            <div class="skill-item">
+                <span>NumPy</span>
+                <div class="confidence-bar" data-level="4"></div>
+            </div>
+            <div class="skill-item">
+                <span>OpenCV</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+            <div class="skill-item">
+                <span>PyTorch</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+            <div class="skill-item">
+                <span>OpenAI API</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+    
+            <h2>Tools</h2>
+            <div class="skill-item">
+                <span>Jira</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+            <div class="skill-item">
+                <span>Git</span>
+                <div class="confidence-bar" data-level="4"></div>
+            </div>
+            <div class="skill-item">
+                <span>GitHub</span>
+                <div class="confidence-bar" data-level="4"></div>
+            </div>
+            <div class="skill-item">
+                <span>Trello</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+    
+            <h2>Platforms</h2>
+            <div class="skill-item">
+                <span>Terraform</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+            <div class="skill-item">
+                <span>Azure</span>
+                <div class="confidence-bar" data-level="4"></div>
+            </div>
+            <div class="skill-item">
+                <span>Google Cloud Platform</span>
+                <div class="confidence-bar" data-level="3"></div>
+            </div>
+            <div class="skill-item">
+                <span>AWS</span>
+                <div class="confidence-bar" data-level="4"></div>
+            </div>
+        </section>
+    
         <!-- Pie Charts Section -->
         <section class="charts-container">
             <!-- Programming Languages -->
@@ -116,20 +258,33 @@
                 <h2>Programming Languages</h2>
                 <canvas id="languagesPieChart"></canvas>
             </div>
-
-            <!-- Frameworks and Libraries -->
+    
+            <!-- Frameworks -->
             <div class="chart">
-                <h2>Frameworks and Libraries</h2>
+                <h2>Frameworks</h2>
                 <canvas id="frameworksPieChart"></canvas>
             </div>
-
-            <!-- Tools and Platforms -->
+    
+            <!-- Libraries -->
             <div class="chart">
-                <h2>Tools and Platforms</h2>
+                <h2>Libraries</h2>
+                <canvas id="librariesPieChart"></canvas>
+            </div>
+    
+            <!-- Tools -->
+            <div class="chart">
+                <h2>Tools</h2>
                 <canvas id="toolsPieChart"></canvas>
+            </div>
+    
+            <!-- Platforms -->
+            <div class="chart">
+                <h2>Platforms</h2>
+                <canvas id="platformsPieChart"></canvas>
             </div>
         </section>
     </main>
+    
 
     <!-- Placeholder for Footer -->
     <div id="footer"></div>
