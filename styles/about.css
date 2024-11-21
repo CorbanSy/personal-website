@@ -1,42 +1,93 @@
-
-.about-center{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    background-image: url('../images/background.webp');
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../images/background.webp') no-repeat center center fixed;
     background-size: cover;
-    background-position: center;
-    height: 100vh;
-    margin-top: 55px;
+    color: #fff;
 }
 
-.left-center{
-    padding-left: 40px;
+/* About Page Container */
+.about-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 40px;
+    margin-top: 60px; /* Space below the header */
+    gap: 40px; /* Space between the profile picture and text */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.middle-center{
+/* Left Section for Greeting and About Description */
+.about-left {
+    max-width: 50%;
 }
 
-.right-center{
-}
-
-.greeting{
-    color: white;
-    font-size: 70px;
-    margin-top: 0px;
-    padding-top: 40px;
+.greeting {
+    color: #ffffff;
+    font-size: 3em;
+    margin-top: 0;
+    padding-top: 10px;
     text-shadow: 0 0 8px rgb(0, 191, 255), 0 0 16px rgb(20, 8, 161), 0 0 24px rgb(19, 4, 181);
 }
 
-.about-description p{
-    color: white;
-    margin-top: 40px;
-    margin-bottom: 0px;
+/* About Description Styling */
+.about-description {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
-.profile-picture{
-    margin-top: 40px;
-    height: 450px;
-    border-radius: 250px;
-    border: 5px solid white;
+.about-description p {
+    color: #f0f0f0;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Right Section for Profile Picture */
+.about-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-picture-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture {
+    height: 350px;
+    width: 350px;
+    border-radius: 50%;
+    border: 5px solid #fff;
     object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+    .about-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .about-left {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .profile-picture {
+        height: 250px;
+        width: 250px;
+    }
+
+    .greeting {
+        font-size: 2.5em;
+    }
 }
